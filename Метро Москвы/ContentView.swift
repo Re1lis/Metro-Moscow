@@ -1,21 +1,25 @@
-//
-//  ContentView.swift
-//  Метро Москвы
-//
-//  Created by Артем Терзиян on 19.11.2025.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @State private var isSkippingStartedView: Bool = false
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack {
+            Color.white.ignoresSafeArea()
+            VStack {
+                if !isSkippingStartedView {
+                    StartedView()
+                } else {
+                    
+                }
+            }
+            .onAppear{
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    withAnimation(.easeIn(duration: 0.2)){
+                        isSkippingStartedView.toggle()
+                    }
+                }
+            }
         }
-        .padding()
     }
 }
 
