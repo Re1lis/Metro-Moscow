@@ -59,16 +59,7 @@ class MetroStruct: ObservableObject, Identifiable {
 
 // Часть кода, которая позволяет в будущем использовать переменную counterSation,
 // чтобы указывать общее количество станций, которые есть сейчас во всей схеме Московского метрополитена
-func counterStationsMetro (metro: MetroStruct) -> Int {
-    var count: Int = 0
-    for station in metro.stations {
-        if station.isVisited == true {
-            count += 1
-        }
-    }
-    return count
-}
-var counterStations = counterStationsMetro
+var counterStations = MetroList.reduce(0) { $0 + $1.stations.count }
 
 // Эта переменная позволит пользователю следить за тем, сколько станций он посетил за все время
 class counterIsVisitedStations: ObservableObject {
@@ -93,7 +84,7 @@ class counterIsVisitedStations: ObservableObject {
 
 
 
-var MetroList: MetroStruct = (
+var MetroList: [MetroStruct] = [
     MetroStruct(name: "Сокольническая", number: "1", color: ColorBranch.red, isVisitedStationCounter: 0, lenghtBranch: "46,5", fullTravelTime: "1 час 10 минут", station:
         [Station(name: "Бульвар Рокоссовского", isOpeningYear: 1990, isVisited: false, depthStation: "8"),
          Station(name: "Черкизовская", isOpeningYear: 1990, isVisited: false, depthStation: "9"),
@@ -122,5 +113,6 @@ var MetroList: MetroStruct = (
          Station(name: "Ольховая", isOpeningYear: 2019, isVisited: false, depthStation: "12"),
          Station(name: "Новомосковская", isOpeningYear: 2019, isVisited: false, depthStation: "8"),
          Station(name: "Потапово", isOpeningYear: 2024, isVisited: false, depthStation: nil),
-        ])
-)
+        ]),
+    
+]

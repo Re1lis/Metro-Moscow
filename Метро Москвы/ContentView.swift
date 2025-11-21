@@ -10,7 +10,7 @@ struct ContentView: View {
                     StartedView()
                 } else {
                     
-                }
+                } 
             }
             .onAppear{
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
