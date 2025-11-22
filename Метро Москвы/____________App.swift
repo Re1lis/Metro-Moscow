@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct ____________App: App {
+    @StateObject private var count = counterIsVisitedStations()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(count)
         }
     }
 }

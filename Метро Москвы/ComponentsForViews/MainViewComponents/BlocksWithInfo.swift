@@ -1,14 +1,36 @@
 import SwiftUI
 
 struct BlockWithInfoComponent: View {
+    @EnvironmentObject private var count: counterIsVisitedStations
     var body: some View {
-        HStack {
-            Text("Hello World")
-        // Добавить два блока, общее количество станций, а также количество станций, которые пользователь посетил, возможно, можно будет посмотреть список этих станций, сделать через NavigationStack
+        HStack(spacing: 20){
+            VStack{
+                NavigationLink {
+                    
+                } label : {
+                    VStack {
+                        Text("\(count.counterIsVisited) / \(counterStations)")
+                            .font(.custom("moscowsansregular", size: 25))
+                            .foregroundColor(.black)
+                        Text("Посещено станций")
+                            .font(.custom("moscowsansregular", size: 24))
+                            .foregroundColor(.black)
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity, maxHeight: 100)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.black, lineWidth: 1)
+                    )
+                }
+            }
         }
+        .padding(.trailing)
+        .padding(.leading)
     }
 }
 
 #Preview {
     BlockWithInfoComponent()
+        .environmentObject(counterIsVisitedStations())
 }
