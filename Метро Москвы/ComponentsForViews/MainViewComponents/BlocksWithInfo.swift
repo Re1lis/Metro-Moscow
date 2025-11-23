@@ -19,7 +19,7 @@ struct BlockWithInfoComponent: View {
                     .padding()
                     .frame(maxWidth: .infinity, maxHeight: 100)
                     .overlay(
-                        RoundedRectangle(cornerRadius: 10)
+                        RoundedRectangle(cornerRadius: 20)
                             .stroke(Color.black, lineWidth: 1)
                     )
                 }

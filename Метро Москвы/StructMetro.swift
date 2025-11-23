@@ -6,10 +6,10 @@ import Combine
 enum ColorBranch: String {
     case red
     
-    var description: String {
+    var color: Color {
         switch self {
             case .red:
-            return "red"
+            return .red
         }
     }
 }
