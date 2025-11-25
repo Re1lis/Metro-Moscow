@@ -12,7 +12,8 @@ struct ____________App: App {
     @StateObject private var count = counterIsVisitedStations()
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(count)
+            ContentView()
+                .environmentObject(count)
         }
     }
 }

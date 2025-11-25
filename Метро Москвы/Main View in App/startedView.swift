@@ -1,8 +1,6 @@
 import SwiftUI
 
 struct StartedView: View {
-//    @AppStorage("isOnAppAgain") private var isOnAppAgain: Bool = false
-    
     @State private var isOnAppAgain: Bool = false
     
     var body: some View {

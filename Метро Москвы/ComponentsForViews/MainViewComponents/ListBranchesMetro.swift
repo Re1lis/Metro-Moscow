@@ -1,14 +1,13 @@
 import SwiftUI
 
 struct ListViewBranch: View {
+
     var body: some View {
         Text("Ветки метро")
             .font(.custom("Kabel-Black", size: 25))
         VStack {
             ForEach (MetroList) { branch in
-                NavigationLink {
-                    
-                } label : {
+                NavigationLink (destination: ListStationsOnBranch(branch: branch)){
                     HStack (spacing: 40){
                         ZStack {
                             Circle()
@@ -22,6 +21,8 @@ struct ListViewBranch: View {
                         Text(branch.name)
                             .font(.custom("moscowsansregular", size: 25))
                             .foregroundColor(.black)
+                        
+                        
                     }
                     
                 }

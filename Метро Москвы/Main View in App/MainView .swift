@@ -2,7 +2,6 @@ import SwiftUI
 
 struct MainView: View {
     @EnvironmentObject private var count: counterIsVisitedStations
-
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -21,6 +20,7 @@ struct MainView: View {
                         .padding(.bottom, 10)
                     
                     ListViewBranch()
+                        .environmentObject(counterIsVisitedStations())
                 }
                 .ignoresSafeArea()
             }
@@ -31,5 +31,4 @@ struct MainView: View {
 #Preview {
     MainView()
         .environmentObject(counterIsVisitedStations())
-
 }
