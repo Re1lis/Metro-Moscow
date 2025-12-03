@@ -12,17 +12,12 @@ struct ListStationsOnBranch: View {
                     }
                 } label : {
                     Text(station.name)
-                    if station.isVisited {
-                        Image(systemName: "checkmark.circle")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                            .foregroundColor(.green)
-                    } else {
-                        Image(systemName:"xmark.circle")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                            .foregroundColor(.red)
-                    }
+                        .foregroundColor(.black)
+                        .font(.custom("moscowsansregular", size: 18))
+                        .overlay{
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color.black, lineWidth: 1)
+                        }
                 }
             }
             
@@ -31,6 +26,8 @@ struct ListStationsOnBranch: View {
         .sheet(item: $isSelectedStation) { station in
             StationCard(station: station, branch: branch)
         }
+        .navigationTitle(branch.name)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

@@ -80,10 +80,6 @@ class counterIsVisitedStations: ObservableObject {
 
 
 
-
-
-
-
 var MetroList: [MetroStruct] = [
     MetroStruct(name: "Сокольническая", number: "1", color: ColorBranch.red, isVisitedStationCounter: 0, lenghtBranch: "46,5", fullTravelTime: "1 час 10 минут", station:
         [Station(name: "Бульвар Рокоссовского", isOpeningYear: 1990, isVisited: false, depthStation: "8"),
