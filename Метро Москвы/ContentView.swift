@@ -6,20 +6,21 @@ struct ContentView: View {
 
     var body: some View {
         ZStack {
-            Color.white.ignoresSafeArea()
-            VStack {
-                if !isSkippingStartedView {
-                    StartedView()
-                } else {
-                    MainView()
-                        .environmentObject(count)
-                }
+            MainView()
+                .environmentObject(count)
+                .opacity(isSkippingStartedView ? 1 : 0)
+
+            // Стартовый экран
+            if !isSkippingStartedView {
+                StartedView()
+                    .transition(.opacity)
             }
-            .onAppear{
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    withAnimation(.easeIn(duration: 0.2)){
-                        isSkippingStartedView.toggle()
-                    }
+        }
+        .ignoresSafeArea()
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                withAnimation(.easeInOut(duration: 0.3)) {
+                    isSkippingStartedView = true
                 }
             }
         }

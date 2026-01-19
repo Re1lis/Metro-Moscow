@@ -1,19 +1,18 @@
-//
-//  ____________App.swift
-//  Метро Москвы
-//
-//  Created by Артем Терзиян on 19.11.2025.
-//
+
 
 import SwiftUI
 
 @main
-struct ____________App: App {
-    @StateObject private var count = counterIsVisitedStations()
+struct MetroApp: App {
+    @StateObject var counter = counterIsVisitedStations()
+    @StateObject var appSettings = AppSettings()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(count)
+            DownMenu()
+                .environmentObject(counter)
+                .environmentObject(appSettings)
+                .preferredColorScheme(appSettings.isDarkMode ? .dark : .light)
         }
     }
 }

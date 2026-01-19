@@ -112,3 +112,10 @@ var MetroList: [MetroStruct] = [
         ]),
     
 ]
+
+
+
+class AppSettings: ObservableObject {
+    @Published var notificationsEnabled: Bool = true
+    @Published var isDarkMode: Bool = false
+}

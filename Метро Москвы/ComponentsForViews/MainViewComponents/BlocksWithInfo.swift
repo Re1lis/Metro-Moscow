@@ -8,10 +8,10 @@ struct BlockWithInfoComponent: View {
                 VStack {
                     Text("\(count.counterIsVisited) / \(counterStations)")
                         .font(.custom("moscowsansregular", size: 25))
-                        .foregroundColor(.black)
+                        .foregroundColor(.primary)
                     Text("Посещено станций")
                         .font(.custom("moscowsansregular", size: 24))
-                        .foregroundColor(.black)
+                        .foregroundColor(.primary)
                 }
                 .padding()
                 .frame(maxWidth: .infinity, maxHeight: 100)

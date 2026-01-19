@@ -12,7 +12,7 @@ struct MainView: View {
                             .foregroundColor(.red)
                         Text("Самое протяженное метро в мире")
                             .font(.custom("moscowsansregular", size: 22))
-                            .foregroundColor(.black)
+                            .foregroundColor(.primary)
                     }
                     
                     BlockWithInfoComponent()

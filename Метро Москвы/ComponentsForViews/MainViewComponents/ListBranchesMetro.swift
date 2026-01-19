@@ -15,12 +15,12 @@ struct ListViewBranch: View {
                                 .frame(width: 40)
                             Text(branch.number)
                                 .font(.custom("Kabel-Black", size: 25))
-                                .foregroundColor(.white)
+                                .foregroundColor(.primary)
                                 .padding(.top, 2)
                         }
                         Text(branch.name)
                             .font(.custom("moscowsansregular", size: 25))
-                            .foregroundColor(.black)
+                            .foregroundColor(.primary)
                         
                         
                     }
