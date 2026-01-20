@@ -5,6 +5,7 @@ struct DownMenu: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
+            
             MainView()
                 .tabItem {
                     Image(systemName: "house.fill")
@@ -19,6 +20,12 @@ struct DownMenu: View {
                 }
                 .tag(1)
             
+            HistoryView()
+                .tabItem {
+                    Image(systemName: "book.fill")
+                    Text("История")
+                }
+                .tag(2)
             
             SettingsView()
                 .tabItem {
@@ -28,9 +35,4 @@ struct DownMenu: View {
                 .tag(3)
         }
     }
-}
-
-#Preview {
-    DownMenu()
-        .environmentObject(counterIsVisitedStations())
 }

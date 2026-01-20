@@ -15,9 +15,9 @@ struct MainView: View {
                             .foregroundColor(.primary)
                     }
                     
-                    BlockWithInfoComponent()
-                        .environmentObject(count)
-                        .padding(.bottom, 10)
+//                    BlockWithInfoComponent()
+//                        .environmentObject(count)
+//                        .padding(.bottom, 10)
                     
                     ListViewBranch()
                         .environmentObject(counterIsVisitedStations())

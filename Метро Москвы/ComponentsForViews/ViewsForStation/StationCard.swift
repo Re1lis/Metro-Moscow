@@ -92,10 +92,11 @@ struct StationCard: View {
     }
     
     private func updateCounter() {
-        counterStation.counterIsVisited = MetroList
-            .flatMap { $0.stations }
-            .filter { $0.isVisited }
-            .count
+        if station.isVisited {
+            counterStation.counterIsVisited += 1
+        } else {
+            counterStation.counterIsVisited -= 1
+        }
     }
     
     private func showNotification(message: String) {

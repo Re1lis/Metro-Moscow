@@ -1,5 +1,3 @@
-
-
 import SwiftUI
 
 @main
@@ -9,10 +7,18 @@ struct MetroApp: App {
 
     var body: some Scene {
         WindowGroup {
-            DownMenu()
+            ContentView()
                 .environmentObject(counter)
                 .environmentObject(appSettings)
-                .preferredColorScheme(appSettings.isDarkMode ? .dark : .light)
+                .onChange(of: appSettings.isDarkMode) { value in
+                    UIApplication.shared
+                        .connectedScenes
+                        .compactMap { $0 as? UIWindowScene }
+                        .first?
+                        .windows
+                        .first?
+                        .overrideUserInterfaceStyle = value ? .dark : .light
+                }
         }
     }
 }
