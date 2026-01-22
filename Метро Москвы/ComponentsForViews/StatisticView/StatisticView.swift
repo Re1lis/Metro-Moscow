@@ -65,9 +65,14 @@ struct StatisticsView: View {
                     .cornerRadius(15)
                 }
             }
-            
-            Spacer()
         }
+        .padding(.top, 50)
         .padding()
+        .ignoresSafeArea()
     }
+}
+
+
+#Preview{
+    StatisticsView()
 }

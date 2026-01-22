@@ -20,7 +20,7 @@ struct ListStationsOnBranch: View {
                             .font(.custom("moscowsansregular", size: 23))
                             .overlay{
                                 RoundedRectangle(cornerRadius: 20)
-                                    .stroke(Color.primary, lineWidth: 1)
+                                    .stroke(branch.color.color, lineWidth: 2)
                             }
                     }
                     .frame(height: 50)

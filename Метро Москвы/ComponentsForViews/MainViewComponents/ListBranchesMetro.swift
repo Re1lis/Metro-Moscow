@@ -19,7 +19,7 @@ struct ListViewBranch: View {
                                 .padding(.top, 2)
                         }
                         Text(branch.name)
-                            .font(.custom("moscowsansregular", size: 25))
+                            .font(.custom("moscowsansregular", size: 23))
                             .foregroundColor(.primary)
                         
                         
