@@ -16,32 +16,30 @@ struct StatisticsView: View {
                 .font(.custom("Kabel-Black", size: 30))
                 .foregroundColor(.blue)
             
-            VStack {
-                Text("Всего станций")
+            HStack {
+                Text("Всего станций -")
                     .font(.custom("moscowsansregular", size: 22))
                 Text("\(totalStations)")
-                    .font(.custom("Kabel-Black", size: 50))
+                    .font(.custom("Kabel-Black", size: 40))
                     .foregroundColor(.primary)
             }
             
-            VStack {
-                Text("Посещено")
+            HStack {
+                Text("Посещено станций -")
                     .font(.custom("moscowsansregular", size: 22))
                 Text("\(totalVisited)")
-                    .font(.custom("Kabel-Black", size: 50))
+                    .font(.custom("Kabel-Black", size: 40))
                     .foregroundColor(.green)
             }
             
-            VStack {
-                Text("Пройдено процентов")
+            HStack {
+                Text("Пройдено процентов -")
                     .font(.custom("moscowsansregular", size: 22))
                 Text("\(Int((Double(totalVisited) / Double(totalStations)) * 100))%")
-                    .font(.custom("Kabel-Black", size: 50))
+                    .font(.custom("Kabel-Black", size: 40))
                     .foregroundColor(.orange)
             }
             
-            Divider()
-                .padding(.vertical)
             
             ScrollView {
                 ForEach(MetroList) { branch in
