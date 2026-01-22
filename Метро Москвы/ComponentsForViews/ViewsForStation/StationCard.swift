@@ -9,83 +9,187 @@ struct StationCard: View {
 
     @State private var notificationMessage: String = ""
     @State private var showNotificationBanner: Bool = false
+    @State private var notificationIcon: String = ""
+    @State private var notificationColor: Color = .green
 
     var body: some View {
-        ZStack(alignment: .top) { 
+        ZStack(alignment: .top) {
             VStack {
                 HStack {
                     Text(station.name)
-                        .font(.custom("Kabel-Black", size: 28))
+                        .font(.custom("Kabel-Black", size: 32))
                         .foregroundColor(.primary)
+                        .padding(.leading, 24)
+                    
                     Spacer()
+                    
                     Button(action: { dismiss() }) {
                         Image(systemName: "xmark.circle.fill")
                             .resizable()
                             .frame(width: 30, height: 30)
-                            .foregroundColor(.gray)
+                            .foregroundColor(.gray.opacity(0.7))
+                            .background(Circle().fill(Color(.systemBackground)).opacity(0.9))
                     }
+                    .padding(.trailing, 24)
                 }
-                .padding([.top, .horizontal])
+                .padding(.top, 20)
+                .padding(.bottom, 10)
 
                 Spacer()
-
-                VStack(spacing: 20) {
+                
+                VStack(spacing: 24) {
                     Text("Информация о станции")
-                        .font(.custom("Kabel-Black", size: 24))
+                        .font(.custom("Kabel-Black", size: 28))
+                        .foregroundColor(branch.color.color)
+                        .padding(.top, 8)
                     
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text("Год открытия: \(station.isOpeningYear)")
-                        if let depth = station.depthStation {
-                            Text("Глубина: \(depth) метров")
-                        } else {
-                            Text("Глубина: не указана")
+                    VStack(spacing: 16) {
+                        HStack(spacing: 15) {
+                            Image(systemName: "calendar.badge.clock")
+                                .font(.system(size: 22))
+                                .foregroundColor(.blue)
+                                .frame(width: 40)
+                            
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("Год открытия")
+                                    .font(.custom("moscowsansregular", size: 16))
+                                    .foregroundColor(.secondary)
+                                Text("\(station.isOpeningYear)")
+                                    .font(.custom("Kabel-Black", size: 22))
+                                    .foregroundColor(.primary)
+                            }
+                            
+                            Spacer()
                         }
-                        Text("Ветка метро: \(branch.name)")
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 12)
+                        .background(Color.blue.opacity(0.08))
+                        .cornerRadius(12)
+                        
+                        HStack(spacing: 15) {
+                            Image(systemName: "arrow.down.circle")
+                                .font(.system(size: 22))
+                                .foregroundColor(station.depthStation != nil ? .green : .gray)
+                                .frame(width: 40)
+                            
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("Глубина станции")
+                                    .font(.custom("moscowsansregular", size: 16))
+                                    .foregroundColor(.secondary)
+                                
+                                if let depth = station.depthStation {
+                                    Text("\(depth) метров")
+                                        .font(.custom("Kabel-Black", size: 22))
+                                        .foregroundColor(.green)
+                                } else {
+                                    Text("Не указана")
+                                        .font(.custom("moscowsansregular", size: 18))
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                            
+                            Spacer()
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 12)
+                        .background(Color.green.opacity(0.08))
+                        .cornerRadius(12)
+                        
+                        HStack(spacing: 15) {
+                            Circle()
+                                .fill(branch.color.color)
+                                .frame(width: 32, height: 32)
+                                .overlay(
+                                    Text(branch.number)
+                                        .font(.custom("Kabel-Black", size: 16))
+                                        .foregroundColor(.white)
+                                )
+                            
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("Ветка метро")
+                                    .font(.custom("moscowsansregular", size: 16))
+                                    .foregroundColor(.secondary)
+                                Text(branch.name)
+                                    .font(.custom("Kabel-Black", size: 20))
+                                    .foregroundColor(.primary)
+                                    .lineLimit(2)
+                                    .minimumScaleFactor(0.9)
+                            }
+                            
+                            Spacer()
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 12)
+                        .background(Color.gray.opacity(0.08))
+                        .cornerRadius(12)
                     }
-                    .font(.custom("moscowsansregular", size: 20))
-                    .padding()
-                    .background(Color.gray.opacity(0.2))
-                    .cornerRadius(15)
+                    .padding(.horizontal)
                 }
+                .padding(.vertical, 20)
+                .background(
+                    RoundedRectangle(cornerRadius: 20)
+                        .fill(Color(.systemBackground))
+                        .shadow(color: .black.opacity(0.05), radius: 10, x: 0, y: 5)
+                )
                 .padding(.horizontal)
                 
                 Spacer()
 
                 Button {
-                    withAnimation(.easeIn(duration: 0.3)) {
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                         station.isVisited.toggle()
                         updateCounter()
 
                         if appSettings.notificationsEnabled {
-                            let message = station.isVisited ?
-                                "Вы посетили станцию \(station.name)" :
-                                "Вы убрали посещение станции \(station.name)"
-                            showNotification(message: message)
+                            if station.isVisited {
+                                notificationMessage = "Станция \(station.name) отмечена как посещенная"
+                                notificationIcon = "checkmark.circle.fill"
+                                notificationColor = .green
+                            } else {
+                                notificationMessage = "Посещение станции \(station.name) отменено"
+                                notificationIcon = "xmark.circle.fill"
+                                notificationColor = .orange
+                            }
+                            showNotification()
                         }
                     }
                 } label: {
-                    Text(station.isVisited ? "Убрать посещение" : "Посетить станцию")
-                        .font(.custom("moscowsansregular", size: 22))
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(station.isVisited ? Color.green : Color.red)
-                        .cornerRadius(15)
-                        .padding(.horizontal)
-                        .padding(.bottom, 20)
+                    HStack(spacing: 12) {
+                        Image(systemName: station.isVisited ? "checkmark.circle.fill" : "mappin.circle.fill")
+                            .font(.system(size: 22))
+                        
+                        Text(station.isVisited ? "Убрать посещение" : "Посетить станцию")
+                            .font(.custom("Kabel-Black", size: 22))
+                    }
+                    .foregroundColor(.white)
+                    .padding(.vertical, 18)
+                    .frame(maxWidth: .infinity)
+                    .background(
+                        LinearGradient(
+                            gradient: Gradient(colors: [
+                                station.isVisited ? Color.green : Color.blue,
+                                station.isVisited ? Color.green.opacity(0.8) : Color.blue.opacity(0.8)
+                            ]),
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
+                    .cornerRadius(16)
+                    .shadow(color: station.isVisited ? .green.opacity(0.3) : .blue.opacity(0.3), radius: 8, x: 0, y: 4)
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 30)
                 }
             }
+            .background(Color(.systemBackground).ignoresSafeArea())
 
             if showNotificationBanner {
-                Text(notificationMessage)
-                    .padding()
-                    .background(Color.black.opacity(0.8))
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-                    .padding(.top, 40)
-                    .padding(.horizontal, 20)
-                    .transition(.move(edge: .top).combined(with: .opacity))
-                    .zIndex(1)
+                NotificationBannerView(
+                    message: notificationMessage,
+                    icon: notificationIcon,
+                    color: notificationColor,
+                    isShowing: $showNotificationBanner
+                )
+                .zIndex(1)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -99,15 +203,16 @@ struct StationCard: View {
         }
     }
     
-    private func showNotification(message: String) {
-        notificationMessage = message
-        withAnimation {
+    private func showNotification() {
+        withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
             showNotificationBanner = true
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            withAnimation {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            withAnimation(.easeOut(duration: 0.3)) {
                 showNotificationBanner = false
             }
         }
     }
 }
+

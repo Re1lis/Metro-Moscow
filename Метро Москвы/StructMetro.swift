@@ -18,13 +18,10 @@ enum ColorBranch: String {
     case lime
     case turquoise
     case darkGray
-    case black
-    case lightBlueGray
     case lightPink
     case pink
     case darkTeal
-    case darkBlue
-    case darkPink
+
     
     var color: Color {
         switch self {
@@ -52,20 +49,12 @@ enum ColorBranch: String {
             return Color(red: 130/255, green: 192/255, blue: 192/255)
         case .darkGray:
             return Color(red: 35/255, green: 31/255, blue: 32/255)
-        case .black:
-            return Color(red: 0/255, green: 0/255, blue: 0/255)
-        case .lightBlueGray:
-            return Color(red: 161/255, green: 179/255, blue: 212/255)
         case .lightPink:
             return Color(red: 255/255, green: 204/255, blue: 204/255)
         case .pink:
             return Color(red: 222/255, green: 100/255, blue: 161/255)
         case .darkTeal:
             return Color(red: 3/255, green: 121/255, blue: 95/255)
-        case .darkBlue:
-            return Color(red: 39/255, green: 48/255, blue: 63/255)
-        case .darkPink:
-            return Color(red: 172/255, green: 23/255, blue: 83/255)
         }
     }
 }
@@ -228,10 +217,12 @@ var MetroList: [MetroStruct] = [
              Station(name: "Смоленская", isOpeningYear: 1935, isVisited: false, depthStation: "8"),
              Station(name: "Арбатская", isOpeningYear: 1935, isVisited: false, depthStation: "8"),
              Station(name: "Александровский сад", isOpeningYear: 1935, isVisited: false, depthStation: nil),
-             Station(name: "Выставочная", isOpeningYear: 2005, isVisited: false, depthStation: "25"),
-             Station(name: "Международная", isOpeningYear: 2006, isVisited: false, depthStation: "25"),
             ]),
-    MetroStruct(name: "Кольцевая", number: "5", color: ColorBranch.brown, isVisitedStationCounter: 0, lenghtBranch: "19,4", fullTravelTime: "1 час 27.5 минут", station:
+    MetroStruct(name: "Филёвская", number: "4А", color: ColorBranch.lightBlue, isVisitedStationCounter: 0, lenghtBranch: "2,2", fullTravelTime: "5 минут", station:
+            [Station(name: "Деловой центр", isOpeningYear: 2005, isVisited: false, depthStation: "25"),
+             Station(name: "Москва-Сити", isOpeningYear: 2006, isVisited: false, depthStation: "25"),
+            ]),
+    MetroStruct(name: "Кольцевая", number: "5", color: ColorBranch.brown, isVisitedStationCounter: 0, lenghtBranch: "19,4", fullTravelTime: "30 минут", station:
             [Station(name: "Парк культуры", isOpeningYear: 1950, isVisited: false, depthStation: nil),
              Station(name: "Октябрьская", isOpeningYear: 1950, isVisited: false, depthStation: nil),
              Station(name: "Добрынинская", isOpeningYear: 1950, isVisited: false, depthStation: nil),
@@ -245,6 +236,201 @@ var MetroList: [MetroStruct] = [
              Station(name: "Краснопресненская", isOpeningYear: 1954, isVisited: false, depthStation: "35.5"),
              Station(name: "Киевская", isOpeningYear: 1954, isVisited: false, depthStation: "53"),
             ]),
+    MetroStruct(name: "Калужско-Рижская", number: "6", color: ColorBranch.orange, isVisitedStationCounter: 0, lenghtBranch: "37,8", fullTravelTime: "56 минут", station:
+            [Station(name: "Медведково", isOpeningYear: 1978, isVisited: false, depthStation: "10"),
+             Station(name: "Бабушкинская", isOpeningYear: 1978, isVisited: false, depthStation: "10"),
+             Station(name: "Свиблово", isOpeningYear: 1978, isVisited: false, depthStation: "8"),
+             Station(name: "Ботанический сад", isOpeningYear: 1978, isVisited: false, depthStation: "7"),
+             Station(name: "ВДНХ", isOpeningYear: 1958, isVisited: false, depthStation: "53.5"),
+             Station(name: "Алексеевская", isOpeningYear: 1958, isVisited: false, depthStation: "51"),
+             Station(name: "Рижская", isOpeningYear: 1958, isVisited: false, depthStation: "46"),
+             Station(name: "Проспект Мира", isOpeningYear: 1958, isVisited: false, depthStation: "50"),
+             Station(name: "Сухаревская", isOpeningYear: 1972, isVisited: false, depthStation: "43"),
+             Station(name: "Тургеневская", isOpeningYear: 1972, isVisited: false, depthStation: nil),
+             Station(name: "Китай-город", isOpeningYear: 1971, isVisited: false, depthStation: nil),
+             Station(name: "Третьяковская", isOpeningYear: 1971, isVisited: false, depthStation: nil),
+             Station(name: "Октябрьская", isOpeningYear: 1962, isVisited: false, depthStation: nil),
+             Station(name: "Шаболовская", isOpeningYear: 1980, isVisited: false, depthStation: "46.5"),
+             Station(name: "Ленинский проспект", isOpeningYear: 1962, isVisited: false, depthStation: nil),
+             Station(name: "Академическая", isOpeningYear: 1962, isVisited: false, depthStation: "8.5"),
+             Station(name: "Профсоюзная", isOpeningYear: 1962, isVisited: false, depthStation: "7"),
+             Station(name: "Новые Черёмушки", isOpeningYear: 1962, isVisited: false, depthStation: "7"),
+             Station(name: "Калужская", isOpeningYear: 1974, isVisited: false, depthStation: "10"),
+             Station(name: "Беляево", isOpeningYear: 1974, isVisited: false, depthStation: "12"),
+             Station(name: "Коньково", isOpeningYear: 1987, isVisited: false, depthStation: "8"),
+             Station(name: "Тёплый Стан", isOpeningYear: 1987, isVisited: false, depthStation: "8"),
+             Station(name: "Ясенево", isOpeningYear: 1990, isVisited: false, depthStation: "8"),
+             Station(name: "Новоясеневская", isOpeningYear: 1990, isVisited: false, depthStation: "7"),
+            ]),
+    MetroStruct(name: "Таганско-Краснопресненская", number: "7", color: ColorBranch.purple, isVisitedStationCounter: 0, lenghtBranch: "42,3", fullTravelTime: "59 минут", station:
+            [Station(name: "Планерная", isOpeningYear: 1975, isVisited: false, depthStation: "6"),
+             Station(name: "Сходненская", isOpeningYear: 1975, isVisited: false, depthStation: "6"),
+             Station(name: "Тушинская", isOpeningYear: 1975, isVisited: false, depthStation: "10.5"),
+             Station(name: "Спартак", isOpeningYear: 2014, isVisited: false, depthStation: "10"),
+             Station(name: "Щукинская", isOpeningYear: 1975, isVisited: false, depthStation: "13"),
+             Station(name: "Октябрьское Поле", isOpeningYear: 1972, isVisited: false, depthStation: "9"),
+             Station(name: "Полежаевская", isOpeningYear: 1972, isVisited: false, depthStation: "10"),
+             Station(name: "Беговая", isOpeningYear: 1972, isVisited: false, depthStation: "9"),
+             Station(name: "Улица 1905 года", isOpeningYear: 1972, isVisited: false, depthStation: "11"),
+             Station(name: "Баррикадная", isOpeningYear: 1972, isVisited: false, depthStation: "30"),
+             Station(name: "Пушкинская", isOpeningYear: 1975, isVisited: false, depthStation: "51"),
+             Station(name: "Кузнецкий Мост", isOpeningYear: 1975, isVisited: false, depthStation: "39.5"),
+             Station(name: "Китай-город", isOpeningYear: 1971, isVisited: false, depthStation: "29"),
+             Station(name: "Таганская", isOpeningYear: 1966, isVisited: false, depthStation: "36"),
+             Station(name: "Пролетарская", isOpeningYear: 1966, isVisited: false, depthStation: "9"),
+             Station(name: "Волгоградский проспект", isOpeningYear: 1966, isVisited: false, depthStation: "8"),
+             Station(name: "Текстильщики", isOpeningYear: 1966, isVisited: false, depthStation: "13"),
+             Station(name: "Кузьминки", isOpeningYear: 1966, isVisited: false, depthStation: "8"),
+             Station(name: "Рязанский проспект", isOpeningYear: 1966, isVisited: false, depthStation: "6"),
+             Station(name: "Выхино", isOpeningYear: 1966, isVisited: false, depthStation: nil),
+             Station(name: "Лермонтовский проспект", isOpeningYear: 2013, isVisited: false, depthStation: "12"),
+             Station(name: "Жулебино", isOpeningYear: 2013, isVisited: false, depthStation: "15"),
+             Station(name: "Котельники", isOpeningYear: 2015, isVisited: false, depthStation: "15"),
+            ]),
+    MetroStruct(name: "Калининская", number: "8", color: ColorBranch.yellow, isVisitedStationCounter: 0, lenghtBranch: "16,3", fullTravelTime: "22 минуты", station:
+            [Station(name: "Третьяковская", isOpeningYear: 1986, isVisited: false, depthStation: "46"),
+             Station(name: "Марксистская", isOpeningYear: 1979, isVisited: false, depthStation: "60"),
+             Station(name: "Площадь Ильича", isOpeningYear: 1979, isVisited: false, depthStation: "46"),
+             Station(name: "Авиамоторная", isOpeningYear: 1979, isVisited: false, depthStation: "53"),
+             Station(name: "Шоссе Энтузиастов", isOpeningYear: 1979, isVisited: false, depthStation: "53"),
+             Station(name: "Перово", isOpeningYear: 1979, isVisited: false, depthStation: "9"),
+             Station(name: "Новогиреево", isOpeningYear: 1979, isVisited: false, depthStation: "9"),
+             Station(name: "Новокосино", isOpeningYear: 2012, isVisited: false, depthStation: "9"),
+            ]),
+    MetroStruct(name: "Солнцевская", number: "8А", color: ColorBranch.yellow, isVisitedStationCounter: 0, lenghtBranch: "30,9", fullTravelTime: "41 минута", station:
+            [Station(name: "Деловой центр", isOpeningYear: 2014, isVisited: false, depthStation: "25"),
+             Station(name: "Парк Победы", isOpeningYear: 2014, isVisited: false, depthStation: "73.6"),
+             Station(name: "Минская", isOpeningYear: 2017, isVisited: false, depthStation: "15"),
+             Station(name: "Ломоносовский проспект", isOpeningYear: 2017, isVisited: false, depthStation: "15"),
+             Station(name: "Раменки", isOpeningYear: 2017, isVisited: false, depthStation: "15"),
+             Station(name: "Мичуринский проспект", isOpeningYear: 2018, isVisited: false, depthStation: "13"),
+             Station(name: "Озёрная", isOpeningYear: 2018, isVisited: false, depthStation: "25"),
+             Station(name: "Говорово", isOpeningYear: 2018, isVisited: false, depthStation: "14"),
+             Station(name: "Солнцево", isOpeningYear: 2018, isVisited: false, depthStation: "13"),
+             Station(name: "Боровское шоссе", isOpeningYear: 2018, isVisited: false, depthStation: "20"),
+             Station(name: "Новопеределкино", isOpeningYear: 2018, isVisited: false, depthStation: "16"),
+             Station(name: "Рассказовка", isOpeningYear: 2018, isVisited: false, depthStation: "12"),
+             Station(name: "Пыхтино", isOpeningYear: 2023, isVisited: false, depthStation: nil),
+             Station(name: "Аэропорт Внуково", isOpeningYear: 2023, isVisited: false, depthStation: nil),
+            ]),
+    MetroStruct(name: "Серпуховско-Тимирязевская", number: "9", color: ColorBranch.gray, isVisitedStationCounter: 0, lenghtBranch: "41,4", fullTravelTime: "1 час", station:
+            [Station(name: "Алтуфьево", isOpeningYear: 1994, isVisited: false, depthStation: "9"),
+             Station(name: "Бибирево", isOpeningYear: 1992, isVisited: false, depthStation: "9.5"),
+             Station(name: "Отрадное", isOpeningYear: 1991, isVisited: false, depthStation: "9"),
+             Station(name: "Владыкино", isOpeningYear: 1991, isVisited: false, depthStation: "10.5"),
+             Station(name: "Петровско-Разумовская", isOpeningYear: 1991, isVisited: false, depthStation: "61"),
+             Station(name: "Тимирязевская", isOpeningYear: 1991, isVisited: false, depthStation: "63.5"),
+             Station(name: "Дмитровская", isOpeningYear: 1991, isVisited: false, depthStation: "59"),
+             Station(name: "Савёловская", isOpeningYear: 1988, isVisited: false, depthStation: "52"),
+             Station(name: "Менделеевская", isOpeningYear: 1988, isVisited: false, depthStation: "48.5"),
+             Station(name: "Цветной бульвар", isOpeningYear: 1988, isVisited: false, depthStation: "50"),
+             Station(name: "Чеховская", isOpeningYear: 1987, isVisited: false, depthStation: "62"),
+             Station(name: "Боровицкая", isOpeningYear: 1986, isVisited: false, depthStation: "46.5"),
+             Station(name: "Полянка", isOpeningYear: 1986, isVisited: false, depthStation: "36.5"),
+             Station(name: "Серпуховская", isOpeningYear: 1983, isVisited: false, depthStation: "43"),
+             Station(name: "Тульская", isOpeningYear: 1983, isVisited: false, depthStation: "9.5"),
+             Station(name: "Нагатинская", isOpeningYear: 1983, isVisited: false, depthStation: "13.5"),
+             Station(name: "Нагорная", isOpeningYear: 1983, isVisited: false, depthStation: "9"),
+             Station(name: "Нахимовский проспект", isOpeningYear: 1983, isVisited: false, depthStation: "9.5"),
+             Station(name: "Севастопольская", isOpeningYear: 1983, isVisited: false, depthStation: "13"),
+             Station(name: "Чертановская", isOpeningYear: 1983, isVisited: false, depthStation: "10.5"),
+             Station(name: "Южная", isOpeningYear: 1983, isVisited: false, depthStation: "10"),
+             Station(name: "Пражская", isOpeningYear: 1985, isVisited: false, depthStation: "9.5"),
+             Station(name: "Улица Академика Янгеля", isOpeningYear: 2000, isVisited: false, depthStation: "8"),
+             Station(name: "Аннино", isOpeningYear: 2001, isVisited: false, depthStation: "8"),
+             Station(name: "Бульвар Дмитрия Донского", isOpeningYear: 2002, isVisited: false, depthStation: "10"),
+            ]),
+    MetroStruct(name: "Люблинско-Дмитровская", number: "10", color: ColorBranch.lime, isVisitedStationCounter: 0, lenghtBranch: "43,9", fullTravelTime: "1 час 6 минут", station:
+            [Station(name: "Физтех", isOpeningYear: 2023, isVisited: false, depthStation: nil),
+             Station(name: "Лианозово", isOpeningYear: 2023, isVisited: false, depthStation: nil),
+             Station(name: "Яхромская", isOpeningYear: 2023, isVisited: false, depthStation: nil),
+             Station(name: "Селигерская", isOpeningYear: 2018, isVisited: false, depthStation: "20"),
+             Station(name: "Верхние Лихоборы", isOpeningYear: 2018, isVisited: false, depthStation: nil),
+             Station(name: "Окружная", isOpeningYear: 2018, isVisited: false, depthStation: nil),
+             Station(name: "Петровско-Разумовская", isOpeningYear: 2016, isVisited: false, depthStation: nil),
+             Station(name: "Фонвизинская", isOpeningYear: 2016, isVisited: false, depthStation: nil),
+             Station(name: "Бутырская", isOpeningYear: 2016, isVisited: false, depthStation: nil),
+             Station(name: "Марьина Роща", isOpeningYear: 2010, isVisited: false, depthStation: nil),
+             Station(name: "Достоевская", isOpeningYear: 2010, isVisited: false, depthStation: nil),
+             Station(name: "Трубная", isOpeningYear: 2007, isVisited: false, depthStation: nil),
+             Station(name: "Сретенский бульвар", isOpeningYear: 2007, isVisited: false, depthStation: nil),
+             Station(name: "Чкаловская", isOpeningYear: 1995, isVisited: false, depthStation: nil),
+             Station(name: "Римская", isOpeningYear: 1995, isVisited: false, depthStation: nil),
+             Station(name: "Крестьянская Застава", isOpeningYear: 1995, isVisited: false, depthStation: nil),
+             Station(name: "Дубровка", isOpeningYear: 1999, isVisited: false, depthStation: "62"),
+             Station(name: "Кожуховская", isOpeningYear: 1995, isVisited: false, depthStation: "12"),
+             Station(name: "Печатники", isOpeningYear: 1995, isVisited: false, depthStation: "5"),
+             Station(name: "Волжская", isOpeningYear: 1995, isVisited: false, depthStation: "8"),
+             Station(name: "Люблино", isOpeningYear: 1996, isVisited: false, depthStation: "8"),
+             Station(name: "Братиславская", isOpeningYear: 1996, isVisited: false, depthStation: "8"),
+             Station(name: "Марьино", isOpeningYear: 1996, isVisited: false, depthStation: "8"),
+             Station(name: "Борисово", isOpeningYear: 2011, isVisited: false, depthStation: "10"),
+             Station(name: "Шипиловская", isOpeningYear: 2011, isVisited: false, depthStation: "10"),
+             Station(name: "Зябликово", isOpeningYear: 2011, isVisited: false, depthStation: "15"),
+            ]),
+    MetroStruct(name: "Большая кольцевая", number: "11", color: ColorBranch.turquoise, isVisitedStationCounter: 0, lenghtBranch: "70", fullTravelTime: "1 час 30 минут", station:
+            [Station(name: "Савёловская", isOpeningYear: 2018, isVisited: false, depthStation: nil),
+             Station(name: "Петровский парк", isOpeningYear: 2018, isVisited: false, depthStation: nil),
+             Station(name: "ЦСКА", isOpeningYear: 2018, isVisited: false, depthStation: nil),
+             Station(name: "Хорошёвская", isOpeningYear: 2018, isVisited: false, depthStation: nil),
+             Station(name: "Народное Ополчение", isOpeningYear: 2021, isVisited: false, depthStation: nil),
+             Station(name: "Мнёвники", isOpeningYear: 2021, isVisited: false, depthStation: nil),
+             Station(name: "Терехово", isOpeningYear: 2021, isVisited: false, depthStation: nil),
+             Station(name: "Кунцевская", isOpeningYear: 2021, isVisited: false, depthStation: nil),
+             Station(name: "Давыдково", isOpeningYear: 2021, isVisited: false, depthStation: "33"),
+             Station(name: "Аминьевская", isOpeningYear: 2021, isVisited: false, depthStation: "14"),
+             Station(name: "Мичуринский проспект", isOpeningYear: 2021, isVisited: false, depthStation: "19"),
+             Station(name: "Проспект Вернадского", isOpeningYear: 2021, isVisited: false, depthStation: "16"),
+             Station(name: "Новаторская", isOpeningYear: 2021, isVisited: false, depthStation: "11"),
+             Station(name: "Воронцовская", isOpeningYear: 2021, isVisited: false, depthStation: "21"),
+             Station(name: "Зюзино", isOpeningYear: 2021, isVisited: false, depthStation: "17.5"),
+             Station(name: "Каховская", isOpeningYear: 1969, isVisited: false, depthStation: "8"),
+             Station(name: "Варшавская", isOpeningYear: 1969, isVisited: false, depthStation: "9"),
+             Station(name: "Каширская", isOpeningYear: 1969, isVisited: false, depthStation: "7"),
+             Station(name: "Кленовый бульвар", isOpeningYear: 2023, isVisited: false, depthStation: "24.3"),
+             Station(name: "Нагатинский Затон", isOpeningYear: 2023, isVisited: false, depthStation: "27"),
+             Station(name: "Печатники", isOpeningYear: 2023, isVisited: false, depthStation: "30"),
+             Station(name: "Текстильщики", isOpeningYear: 2023, isVisited: false, depthStation: "22"),
+             Station(name: "Нижегородская", isOpeningYear: 2020, isVisited: false, depthStation: "21.8"),
+             Station(name: "Авиамоторная", isOpeningYear: 2020, isVisited: false, depthStation: "19.4"),
+             Station(name: "Лефортово", isOpeningYear: 2020, isVisited: false, depthStation: "26"),
+             Station(name: "Электрозаводская", isOpeningYear: 2020, isVisited: false, depthStation: "20"),
+             Station(name: "Сокольники", isOpeningYear: 2023, isVisited: false, depthStation: nil),
+             Station(name: "Рижская", isOpeningYear: 2023, isVisited: false, depthStation: nil),
+             Station(name: "Марьина Роща", isOpeningYear: 2023, isVisited: false, depthStation: nil),
+            ]),
+    MetroStruct(name: "Бутовская", number: "12", color: ColorBranch.darkGray, isVisitedStationCounter: 0, lenghtBranch: "10", fullTravelTime: "16 минут", station:
+            [Station(name: "Битцевский парк", isOpeningYear: 2014, isVisited: false, depthStation: "10"),
+             Station(name: "Лесопарковая", isOpeningYear: 2014, isVisited: false, depthStation: "10"),
+             Station(name: "Улица Старокачаловская", isOpeningYear: 2003, isVisited: false, depthStation: "10"),
+             Station(name: "Улица Скобелевская", isOpeningYear: 2003, isVisited: false, depthStation: "+9.6"),
+             Station(name: "Бульвар Адмирала Ушакова", isOpeningYear: 2003, isVisited: false, depthStation: "+9.6"),
+             Station(name: "Улица Горчакова", isOpeningYear: 2003, isVisited: false, depthStation: "+9.6"),
+             Station(name: "Бунинская аллея", isOpeningYear: 2003, isVisited: false, depthStation: "+9.6"),
+            ]),
+    MetroStruct(name: "Некрасовская", number: "15", color: ColorBranch.pink, isVisitedStationCounter: 0, lenghtBranch: "19,6", fullTravelTime: "21 минута", station:
+            [Station(name: "Нижегородская", isOpeningYear: 2020, isVisited: false, depthStation: "21.8"),
+             Station(name: "Стахановская", isOpeningYear: 2020, isVisited: false, depthStation: "19"),
+             Station(name: "Окская", isOpeningYear: 2020, isVisited: false, depthStation: "21"),
+             Station(name: "Юго-Восточная", isOpeningYear: 2020, isVisited: false, depthStation: "20"),
+             Station(name: "Косино", isOpeningYear: 2019, isVisited: false, depthStation: "27"),
+             Station(name: "Улица Дмитриевского", isOpeningYear: 2019, isVisited: false, depthStation: "18"),
+             Station(name: "Лухмановская", isOpeningYear: 2019, isVisited: false, depthStation: "15"),
+             Station(name: "Некрасовка", isOpeningYear: 2019, isVisited: false, depthStation: "16"),
+            ]),
+    MetroStruct(name: "Троицкая", number: "16", color: ColorBranch.darkTeal, isVisitedStationCounter: 0, lenghtBranch: "43", fullTravelTime: "31 минута", station:
+            [Station(name: "ЗИЛ", isOpeningYear: 2025, isVisited: false, depthStation: nil),
+             Station(name: "Крымская", isOpeningYear: 2025, isVisited: false, depthStation: nil),
+             Station(name: "Академическая", isOpeningYear: 2025, isVisited: false, depthStation: nil),
+             Station(name: "Вавиловская", isOpeningYear: 2025, isVisited: false, depthStation: nil),
+             Station(name: "Новаторская", isOpeningYear: 2024, isVisited: false, depthStation: "17.6"),
+             Station(name: "Университет дружбы народов", isOpeningYear: 2024, isVisited: false, depthStation: "23"),
+             Station(name: "Генерала Тюленева", isOpeningYear: 2024, isVisited: false, depthStation: "20"),
+             Station(name: "Тютчевская", isOpeningYear: 2024, isVisited: false, depthStation: "12.65"),
+             Station(name: "Корниловская", isOpeningYear: 2024, isVisited: false, depthStation: "16.18"),
+             Station(name: "Коммунарка", isOpeningYear: 2024, isVisited: false, depthStation: "15"),
+             Station(name: "Новомосковская", isOpeningYear: 2024, isVisited: false, depthStation: "8"),
+            ])
 ]
 
 
