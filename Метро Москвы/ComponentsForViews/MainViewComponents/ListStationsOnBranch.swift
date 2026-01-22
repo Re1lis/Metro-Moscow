@@ -24,25 +24,13 @@ struct ListStationsOnBranch: View {
                         
                         Spacer()
                         
-                        Circle()
-                            .fill(station.isVisited ? Color.green : Color.clear)
-                            .frame(width: 24, height: 24)
-                            .overlay(
-                                Circle()
-                                    .stroke(station.isVisited ? Color.green : Color.gray, lineWidth: 2)
-                            )
-                            .overlay(
-                                Image(systemName: "checkmark")
-                                    .font(.system(size: 12, weight: .bold))
-                                    .foregroundColor(.white)
-                                    .opacity(station.isVisited ? 1 : 0)
-                            )
+                        
                     }
                     .padding(.horizontal, 20)
                     .padding(.vertical, 16)
                     .background(
                         RoundedRectangle(cornerRadius: 15)
-                            .fill(Color(.systemBackground))
+                            .fill(station.isVisited ? branch.color.color.opacity(0.2) : Color(.systemBackground))
                     )
                     .overlay(
                         RoundedRectangle(cornerRadius: 15)
