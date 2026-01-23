@@ -211,7 +211,7 @@ struct HistoryView: View {
                 ToolbarItem(placement: .principal) {
                     Text("История метро")
                         .font(.custom("Kabel-Black", size: 28))
-                        .foregroundColor(.blue)
+                        .foregroundColor(.red)
                 }
             }
         }

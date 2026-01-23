@@ -105,7 +105,7 @@ struct SettingsView: View {
                 ToolbarItem(placement: .principal) {
                     Text("Настройки")
                         .font(.custom("Kabel-Black", size: 28))
-                        .foregroundColor(.blue)
+                        .foregroundColor(.red)
                 }
             }
         }
