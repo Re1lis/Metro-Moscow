@@ -1,14 +1,15 @@
 import SwiftUI
 
 struct StatisticsView: View {
-    @EnvironmentObject var counterStation: counterIsVisitedStations
+    @EnvironmentObject var metroManager: MetroDataManager
+    @EnvironmentObject var appSettings: AppSettings
     
     var totalVisited: Int {
-        MetroList.flatMap { $0.stations }.filter { $0.isVisited }.count
+        metroManager.counterIsVisited
     }
     
     var totalStations: Int {
-        counterStations
+        metroManager.metroList.reduce(0) { $0 + $1.stations.count }
     }
     
     var percentage: Int {
@@ -82,7 +83,7 @@ struct StatisticsView: View {
                         }
                         .padding(.horizontal)
                         
-                        ForEach(Array(MetroList.enumerated()), id: \.element.id) { index, branch in
+                        ForEach(Array(metroManager.metroList.enumerated()), id: \.element.id) { index, branch in
                             let visited = branch.stations.filter { $0.isVisited }.count
                             let total = branch.stations.count
                             let progress = Float(visited) / Float(total)
@@ -117,12 +118,13 @@ struct StatisticsView: View {
                     animatedPercentage = percentage
                 }
             }
-            .onChange(of: percentage) { oldValue, newValue in
+            .onChange(of: totalVisited) { oldValue, newValue in
+                let newPercentage = Int((Double(newValue) / Double(totalStations)) * 100)
                 withAnimation(.easeOut(duration: 0.8)) {
-                    animatedPercentage = newValue
+                    animatedPercentage = newPercentage
                 }
                 
-                if newValue > oldValue && newValue % 25 == 0 {
+                if newValue > oldValue && newPercentage % 25 == 0 {
                     let generator = UINotificationFeedbackGenerator()
                     generator.notificationOccurred(.success)
                 }
@@ -138,9 +140,4 @@ struct StatisticsView: View {
         }
         .navigationViewStyle(.stack)
     }
-}
-
-#Preview {
-    StatisticsView()
-        .environmentObject(counterIsVisitedStations())
 }

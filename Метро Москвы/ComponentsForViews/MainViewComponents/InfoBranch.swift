@@ -2,6 +2,7 @@ import SwiftUI
 
 struct BranchInfoView: View {
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var metroManager: MetroDataManager
     let branch: MetroStruct
     
     var visitedCount: Int {
@@ -9,7 +10,8 @@ struct BranchInfoView: View {
     }
     
     var progress: Double {
-        Double(visitedCount) / Double(branch.stations.count)
+        guard branch.stations.count > 0 else { return 0 }
+        return Double(visitedCount) / Double(branch.stations.count)
     }
     
     var body: some View {
@@ -121,8 +123,7 @@ struct BranchInfoView: View {
                     .cornerRadius(20)
                     .padding(.horizontal)
                     
-
-                    if visitedCount == 0 {
+                    if visitedCount == 0 && branch.stations.count > 0 {
                         VStack(spacing: 12) {
                             Image(systemName: "map.fill")
                                 .font(.system(size: 40))
@@ -139,7 +140,6 @@ struct BranchInfoView: View {
                         .cornerRadius(16)
                         .padding(.horizontal)
                     }
-                    
                     
                     if visitedCount == branch.stations.count && branch.stations.count > 0 {
                         VStack(spacing: 12) {
@@ -158,15 +158,28 @@ struct BranchInfoView: View {
                         .cornerRadius(16)
                         .padding(.horizontal)
                     }
+                    
+                    NavigationLink(destination: ListStationsOnBranch(branch: branch)) {
+                        HStack {
+                            Image(systemName: "list.bullet")
+                                .foregroundColor(branch.color.color)
+                            Text("Список всех станций")
+                                .font(.custom("moscowsansregular", size: 18))
+                                .foregroundColor(.primary)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.gray)
+                        }
+                        .padding()
+                        .background(Color(.systemBackground))
+                        .cornerRadius(12)
+                        .shadow(color: .gray.opacity(0.1), radius: 5, x: 0, y: 2)
+                        .padding(.horizontal)
+                    }
                 }
                 .padding(.bottom, 40)
             }
         }
         .background(Color(.systemBackground).ignoresSafeArea())
     }
-}
-
-// Для предпросмотра
-#Preview {
-    BranchInfoView(branch: MetroList.first!)
 }

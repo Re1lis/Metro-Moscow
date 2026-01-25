@@ -1,12 +1,17 @@
 import SwiftUI
 
 struct BlockWithInfoComponent: View {
-    @EnvironmentObject private var count: counterIsVisitedStations
+    @EnvironmentObject private var metroManager: MetroDataManager
+    
+    private var totalStations: Int {
+        metroManager.metroList.reduce(0) { $0 + $1.stations.count }
+    }
+    
     var body: some View {
-        HStack(spacing: 20){
-            VStack{
+        HStack(spacing: 20) {
+            VStack {
                 VStack {
-                    Text("\(count.counterIsVisited) / \(counterStations)")
+                    Text("\(metroManager.counterIsVisited) / \(totalStations)")
                         .font(.custom("moscowsansregular", size: 25))
                         .foregroundColor(.primary)
                     Text("Посещено станций")
@@ -28,5 +33,5 @@ struct BlockWithInfoComponent: View {
 
 #Preview {
     BlockWithInfoComponent()
-        .environmentObject(counterIsVisitedStations())
+        .environmentObject(MetroDataManager.shared)
 }

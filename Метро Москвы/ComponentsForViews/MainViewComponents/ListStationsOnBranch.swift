@@ -4,7 +4,7 @@ struct ListStationsOnBranch: View {
     @State var isSelectedStation: Station? = nil
     @State private var showBranchInfo = false
     let branch: MetroStruct
-    @EnvironmentObject var counterStation: counterIsVisitedStations
+    @EnvironmentObject var metroManager: MetroDataManager
     @EnvironmentObject var appSettings: AppSettings
     
     @State private var notificationMessage: String = ""
@@ -16,42 +16,42 @@ struct ListStationsOnBranch: View {
         ZStack(alignment: .top) {
             ScrollView {
                 VStack(spacing: 12) {
-                    ForEach(branch.stations) { station in
+                    ForEach(Array(branch.stations.enumerated()), id: \.element.id) { index, station in
                         HStack(spacing: 16) {
-//                            ZStack {
-//                                Circle()
-//                                    .fill(
-//                                        LinearGradient(
-//                                            colors: station.isVisited ?
-//                                                [branch.color.color, branch.color.color.opacity(0.7)] :
-//                                                [Color.white.opacity(0.1), Color.gray.opacity(0.05)],
-//                                            startPoint: .topLeading,
-//                                            endPoint: .bottomTrailing
-//                                        )
-//                                    )
-//                                    .frame(width: 44, height: 44)
-//                                    .shadow(
-//                                        color: station.isVisited ?
-//                                            branch.color.color.opacity(0.5) :
-//                                            Color.black.opacity(0.1),
-//                                        radius: station.isVisited ? 8 : 3,
-//                                        x: 0,
-//                                        y: 2
-//                                    )
-//                                    .overlay(
-//                                        Circle()
-//                                            .stroke(
-//                                                station.isVisited ?
-//                                                    branch.color.color.opacity(0.6) :
-//                                                    branch.color.color.opacity(0.3),
-//                                                lineWidth: 2
-//                                            )
-//                                    )
-//                                
-//                                Text("\(Array(branch.stations).firstIndex(where: { $0.id == station.id }) ?? 0 + 1)")
-//                                    .font(.custom("Kabel-Black", size: 20))
-//                                    .foregroundColor(station.isVisited ? .white : branch.color.color)
-//                            }
+                            ZStack {
+                                Circle()
+                                    .fill(
+                                        LinearGradient(
+                                            colors: station.isVisited ?
+                                                [branch.color.color, branch.color.color.opacity(0.7)] :
+                                                [Color.white.opacity(0.1), Color.gray.opacity(0.05)],
+                                            startPoint: .topLeading,
+                                            endPoint: .bottomTrailing
+                                        )
+                                    )
+                                    .frame(width: 44, height: 44)
+                                    .shadow(
+                                        color: station.isVisited ?
+                                            branch.color.color.opacity(0.5) :
+                                            Color.black.opacity(0.1),
+                                        radius: station.isVisited ? 8 : 3,
+                                        x: 0,
+                                        y: 2
+                                    )
+                                    .overlay(
+                                        Circle()
+                                            .stroke(
+                                                station.isVisited ?
+                                                    branch.color.color.opacity(0.6) :
+                                                    branch.color.color.opacity(0.3),
+                                                lineWidth: 2
+                                            )
+                                    )
+                                
+                                Text("\(index + 1)")
+                                    .font(.custom("Kabel-Black", size: 20))
+                                    .foregroundColor(station.isVisited ? .white : branch.color.color)
+                            }
                             
                             Button {
                                 withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
@@ -173,13 +173,7 @@ struct ListStationsOnBranch: View {
     
     private func toggleStationVisit(_ station: Station) {
         withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-            station.isVisited.toggle()
-            
-            if station.isVisited {
-                counterStation.counterIsVisited += 1
-            } else {
-                counterStation.counterIsVisited -= 1
-            }
+            metroManager.toggleStationVisit(station: station, in: branch)
             
             if appSettings.notificationsEnabled {
                 if station.isVisited {

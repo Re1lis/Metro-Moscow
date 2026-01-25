@@ -4,7 +4,7 @@ struct StationCard: View {
     @ObservedObject var station: Station
     let branch: MetroStruct
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var counterStation: counterIsVisitedStations
+    @EnvironmentObject var counterStation: CounterIsVisitedStations
     @EnvironmentObject var appSettings: AppSettings
 
     @State private var notificationMessage: String = ""

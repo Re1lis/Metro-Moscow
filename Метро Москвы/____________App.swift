@@ -2,13 +2,13 @@ import SwiftUI
 
 @main
 struct MetroApp: App {
-    @StateObject var counter = counterIsVisitedStations()
+    @StateObject var metroManager = MetroDataManager.shared
     @StateObject var appSettings = AppSettings()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(counter)
+                .environmentObject(metroManager)
                 .environmentObject(appSettings)
                 .onChange(of: appSettings.isDarkMode) { value in
                     UIApplication.shared

@@ -1,23 +1,15 @@
 import SwiftUI
 
 struct ListViewBranch: View {
+    @EnvironmentObject var metroManager: MetroDataManager
+    
     var body: some View {
         ZStack {
-            
-            
-            
-                
-                ScrollView {
-                    VStack(spacing: 0) {
-                        Text("Ветки метро")
-                            .font(.custom("Kabel-Black", size: 25))
-                            .foregroundColor(.primary)
-                            .padding(.top, 25)
-                            .padding(.bottom, 25)
-                            .shadow(color: .blue.opacity(0.1), radius: 2, y: 2)
-                        
+            ScrollView {
+                VStack(spacing: 0) {
+                     
                     LazyVStack(spacing: 16) {
-                        ForEach(MetroList) { branch in
+                        ForEach(metroManager.metroList) { branch in
                             NavigationLink(destination: ListStationsOnBranch(branch: branch)) {
                                 HStack(spacing: 20) {
                                     ZStack {
@@ -83,11 +75,21 @@ struct ListViewBranch: View {
                     .padding(.bottom, 30)
                 }
             }
+            .background(Color(.systemBackground))
+            .navigationTitle("Настройки")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("Настройки")
+                        .font(.custom("Kabel-Black", size: 28))
+                        .foregroundColor(.red)
+                }
+            }
         }
     }
 }
 
-
 #Preview {
     ListViewBranch()
+        .environmentObject(MetroDataManager.shared)
 }

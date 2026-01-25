@@ -2,8 +2,8 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var showStartedView = true
-    @StateObject private var count = counterIsVisitedStations()
-    @StateObject var counter = counterIsVisitedStations()
+    @StateObject private var count = CounterIsVisitedStations()
+    @StateObject var counter = CounterIsVisitedStations()
     @StateObject var appSettings = AppSettings()
     
     var body: some View {
