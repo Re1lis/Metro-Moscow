@@ -137,22 +137,23 @@ struct StationCard: View {
 
                 Button {
                     withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                        station.isVisited.toggle()
-                        updateCounter()
+                            let wasVisited = station.isVisited
+                            station.isVisited.toggle()
+                            updateCounter()
 
-                        if appSettings.notificationsEnabled {
-                            if station.isVisited {
-                                notificationMessage = "Станция \(station.name) отмечена как посещенная"
-                                notificationIcon = "checkmark.circle.fill"
-                                notificationColor = .green
-                            } else {
-                                notificationMessage = "Посещение станции \(station.name) отменено"
-                                notificationIcon = "xmark.circle.fill"
-                                notificationColor = .orange
+                            if appSettings.notificationsEnabled {
+                                if wasVisited == false {
+                                    notificationMessage = "Станция \(station.name) отмечена как посещенная"
+                                    notificationIcon = "checkmark.circle.fill"
+                                    notificationColor = .green
+                                } else {
+                                    notificationMessage = "Посещение станции \(station.name) отменено"
+                                    notificationIcon = "xmark.circle.fill"
+                                    notificationColor = .orange
+                                }
+                                showNotification()
                             }
-                            showNotification()
                         }
-                    }
                 } label: {
                     HStack(spacing: 12) {
                         Image(systemName: station.isVisited ? "checkmark.circle.fill" : "mappin.circle.fill")
@@ -215,4 +216,3 @@ struct StationCard: View {
         }
     }
 }
-

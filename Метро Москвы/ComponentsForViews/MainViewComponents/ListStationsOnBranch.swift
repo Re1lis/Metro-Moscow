@@ -176,7 +176,7 @@ struct ListStationsOnBranch: View {
             metroManager.toggleStationVisit(station: station, in: branch)
             
             if appSettings.notificationsEnabled {
-                if station.isVisited {
+                if !station.isVisited {
                     notificationMessage = "Станция \(station.name) отмечена как посещенная"
                     notificationIcon = "mappin.circle.fill"
                     notificationColor = branch.color.color

@@ -110,7 +110,6 @@ class Station: ObservableObject, Identifiable, Codable {
     @Published var isVisited: Bool = false
     var depthStation: String? = nil
     
-    // CodingKeys для Codable
     enum CodingKeys: String, CodingKey {
         case id
         case name
