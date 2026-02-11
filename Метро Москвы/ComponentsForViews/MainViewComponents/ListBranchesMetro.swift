@@ -76,15 +76,6 @@ struct ListViewBranch: View {
                 }
             }
             .background(Color(.systemBackground))
-            .navigationTitle("Настройки")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text("Настройки")
-                        .font(.custom("Kabel-Black", size: 28))
-                        .foregroundColor(.red)
-                }
-            }
         }
     }
 }

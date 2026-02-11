@@ -132,7 +132,7 @@ struct StatisticsView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    Text("Статистика посещений")
+                    Text("Статистика")
                         .font(.custom("Kabel-Black", size: 28))
                         .foregroundColor(.red)
                 }

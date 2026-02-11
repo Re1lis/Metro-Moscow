@@ -20,10 +20,10 @@ struct DownMenu: View {
                 }
                 .tag(1)
             
-            HistoryView()
+            MainViewHistory()
                 .tabItem {
                     Image(systemName: "book.fill")
-                    Text("История")
+                    Text("Информация")
                 }
                 .tag(2)
             
