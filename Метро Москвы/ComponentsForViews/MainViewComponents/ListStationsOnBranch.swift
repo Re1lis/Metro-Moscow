@@ -49,7 +49,7 @@ struct ListStationsOnBranch: View {
                                     )
                                 
                                 Text("\(index + 1)")
-                                    .font(.custom("Kabel-Black", size: 20))
+                                    .font(.custom("Kabel-Black", size: 18))
                                     .foregroundColor(station.isVisited ? .white : branch.color.color)
                             }
                             
@@ -59,7 +59,7 @@ struct ListStationsOnBranch: View {
                                 }
                             } label: {
                                 Text(station.name)
-                                    .font(.custom("Kabel-Black", size: 24))
+                                    .font(.custom("Kabel-Black", size: 18))
                                     .foregroundColor(.primary)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                             }
