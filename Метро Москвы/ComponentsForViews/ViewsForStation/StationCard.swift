@@ -135,51 +135,6 @@ struct StationCard: View {
                 
                 Spacer()
 
-                Button {
-                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                            let wasVisited = station.isVisited
-                            station.isVisited.toggle()
-                            updateCounter()
-
-                            if appSettings.notificationsEnabled {
-                                if wasVisited == false {
-                                    notificationMessage = "Станция \(station.name) отмечена как посещенная"
-                                    notificationIcon = "checkmark.circle.fill"
-                                    notificationColor = .green
-                                } else {
-                                    notificationMessage = "Посещение станции \(station.name) отменено"
-                                    notificationIcon = "xmark.circle.fill"
-                                    notificationColor = .orange
-                                }
-                                showNotification()
-                            }
-                        }
-                } label: {
-                    HStack(spacing: 12) {
-                        Image(systemName: station.isVisited ? "checkmark.circle.fill" : "mappin.circle.fill")
-                            .font(.system(size: 22))
-                        
-                        Text(station.isVisited ? "Убрать посещение" : "Посетить станцию")
-                            .font(.custom("Kabel-Black", size: 22))
-                    }
-                    .foregroundColor(.white)
-                    .padding(.vertical, 18)
-                    .frame(maxWidth: .infinity)
-                    .background(
-                        LinearGradient(
-                            gradient: Gradient(colors: [
-                                station.isVisited ? Color.green : Color.blue,
-                                station.isVisited ? Color.green.opacity(0.8) : Color.blue.opacity(0.8)
-                            ]),
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        )
-                    )
-                    .cornerRadius(16)
-                    .shadow(color: station.isVisited ? .green.opacity(0.3) : .blue.opacity(0.3), radius: 8, x: 0, y: 4)
-                    .padding(.horizontal, 24)
-                    .padding(.bottom, 30)
-                }
             }
             .background(Color(.systemBackground).ignoresSafeArea())
 

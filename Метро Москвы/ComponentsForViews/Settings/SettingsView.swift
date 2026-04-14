@@ -4,6 +4,8 @@ struct SettingsView: View {
     @EnvironmentObject var metroManager: MetroDataManager
     @EnvironmentObject var appSettings: AppSettings
     
+    @State private var isConfirmWindow = false
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -93,9 +95,13 @@ struct SettingsView: View {
                             }
                             .padding(.horizontal, 20)
                             
+                            
+                            
                             VStack(spacing: 15) {
                                 Button(action: {
-                                    metroManager.resetAllData()
+                                    withAnimation(){
+                                        isConfirmWindow = true
+                                    }
                                 }) {
                                     HStack(spacing: 15) {
                                         Image(systemName: "arrow.counterclockwise.circle.fill")
@@ -112,15 +118,17 @@ struct SettingsView: View {
                                             .cornerRadius(12)
                                             .shadow(color: Color.orange.opacity(0.3), radius: 5, x: 0, y: 3)
                                         
+                                        
                                         VStack(alignment: .leading, spacing: 3) {
                                             Text("Сбросить все посещения")
                                                 .font(.custom("Kabel-Black", size: 18))
                                                 .foregroundColor(.primary)
-                                            
+                                                
                                             Text("Начать отслеживание заново")
                                                 .font(.custom("moscowsansregular", size: 14))
                                                 .foregroundColor(.secondary)
                                         }
+                                    
                                         
                                         Spacer()
                                         
@@ -201,7 +209,30 @@ struct SettingsView: View {
                 }
             }
         }
+        .blur(radius: isConfirmWindow ? 1 : 0)
+        .opacity(isConfirmWindow ? 0.9 : 1.0)
+        .disabled(isConfirmWindow)
+        .animation(.easeInOut(duration: 0.3), value: isConfirmWindow)
+        .confirmationDialog(
+            "Вы уверены?",
+            isPresented: $isConfirmWindow,
+            titleVisibility: .visible
+        ) {
+            Button("Сбросить статистику", role: .destructive) {
+                metroManager.resetAllData()
+                NotificationCenter.default.post(name: NSNotification.Name("RestartApp"), object: nil)
+                    UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+            }
+            Button("Отмена") {
+                withAnimation(){
+                    isConfirmWindow = false
+                }
+            }
+        } message: {
+            Text("Это действие удалит весь ваш прогресс без возможности восстановления.")
+        }
     }
+        
 }
 
 struct SettingToggleRow: View {

@@ -159,23 +159,6 @@ struct BranchInfoView: View {
                         .padding(.horizontal)
                     }
                     
-                    NavigationLink(destination: ListStationsOnBranch(branch: branch)) {
-                        HStack {
-                            Image(systemName: "list.bullet")
-                                .foregroundColor(branch.color.color)
-                            Text("Список всех станций")
-                                .font(.custom("moscowsansregular", size: 18))
-                                .foregroundColor(.primary)
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                                .foregroundColor(.gray)
-                        }
-                        .padding()
-                        .background(Color(.systemBackground))
-                        .cornerRadius(12)
-                        .shadow(color: .gray.opacity(0.1), radius: 5, x: 0, y: 2)
-                        .padding(.horizontal)
-                    }
                 }
                 .padding(.bottom, 40)
             }
