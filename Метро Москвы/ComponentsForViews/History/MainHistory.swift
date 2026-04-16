@@ -26,14 +26,6 @@ struct MainViewHistory: View {
                         )
                         .padding(.horizontal, 20)
                         
-                        BlocksForMainView(
-                            title: "Тематические поезда",
-                            subtitle: "Узнайте, какие тематические поезда появляются или когда-то ездили по метро!",
-                            imageIcon: "train.side.front.car",
-                            buttonText: "Погружение вглубь метро", color: Color.purple,
-                            destination: AnyView(ThemesTrain()),
-                        )
-                        .padding(.horizontal, 20)
                     }
                     .padding(.bottom, 30)
                 }

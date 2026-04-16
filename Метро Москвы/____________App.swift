@@ -5,6 +5,7 @@ struct MetroApp: App {
     @StateObject var metroManager = MetroDataManager.shared
     @StateObject var appSettings = AppSettings()
     @State private var rootId = UUID()
+    @StateObject var chatService = MetroChatService()
 
     var body: some Scene {
         WindowGroup {
@@ -15,6 +16,7 @@ struct MetroApp: App {
                             rootId = UUID()
                         }
                 .environmentObject(metroManager)
+                .environmentObject(chatService)
                 .environmentObject(appSettings)
                 .onChange(of: appSettings.isDarkMode) { value in
                     UIApplication.shared

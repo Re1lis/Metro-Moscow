@@ -33,6 +33,13 @@ struct DownMenu: View {
                     Text("Настройки")
                 }
                 .tag(3)
+            
+            ChatView()
+                .tabItem {
+                    Image(systemName: "bubble.left.and.bubble.right.fill") 
+                Text("Чат")
+                }
+                .tag(4)
         }
     }
 }

@@ -203,7 +203,9 @@ struct HistoryView: View {
                             .frame(height: 30)
                     }
                     .padding(.bottom, 30)
+
                 }
+
             }
             .navigationTitle("История метро")
             .navigationBarTitleDisplayMode(.inline)
@@ -214,7 +216,9 @@ struct HistoryView: View {
                         .foregroundColor(.red)
                 }
             }
+            
         }
+
     }
     
     private var periodCardView: some View {

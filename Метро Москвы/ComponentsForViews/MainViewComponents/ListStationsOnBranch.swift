@@ -1,7 +1,10 @@
 import SwiftUI
 
+
+
 struct ListStationsOnBranch: View {
     @State var isSelectedStation: Station? = nil
+    @EnvironmentObject var chatService: MetroChatService
     @State private var showBranchInfo = false
     let branch: MetroStruct
     @EnvironmentObject var metroManager: MetroDataManager

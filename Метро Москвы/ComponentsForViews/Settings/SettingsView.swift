@@ -4,14 +4,38 @@ struct SettingsView: View {
     @EnvironmentObject var metroManager: MetroDataManager
     @EnvironmentObject var appSettings: AppSettings
     
-    @State private var isConfirmWindow = false
+    @State private var isConfirmWindow: Bool = false
+    @State private var showBanner: Bool = false
+    @State private var bannerText: String = ""
+    @State private var bannerIcon: String = ""
+    @State private var bannerColor: Color = .blue
+    
+    private func triggerBanner(text: String, icon: String, color: Color) {
+        bannerText = text
+        bannerIcon = icon
+        bannerColor = color
+        
+        withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+            showBanner = true
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            withAnimation(.easeIn(duration: 0.3)) {
+                showBanner = false
+            }
+        }
+    }
     
     var body: some View {
         NavigationStack {
             ZStack {
                 Color(.systemBackground).ignoresSafeArea()
                 
+                
+                
                 ScrollView {
+                    
+                    
                     VStack(spacing: 25) {
                         VStack(spacing: 20) {
                             HStack {
@@ -30,9 +54,11 @@ struct SettingsView: View {
                                     isOn: $appSettings.isDarkMode,
                                     color: .purple
                                 ) {
-                                    appSettings.saveSettings()
+                                appSettings.saveSettings()
+                                    let status = appSettings.isDarkMode ? "включена" : "выключена"
+                                    triggerBanner(text: "Темная тема \(status)", icon: "moon.fill", color: .purple)
+                                        }
                                 }
-                            }
                             .padding(.horizontal, 20)
                         }
                         
@@ -53,9 +79,10 @@ struct SettingsView: View {
                                     isOn: $appSettings.notificationsEnabled,
                                     color: .red
                                 ) {
-                                    appSettings.saveSettings()
+                                appSettings.saveSettings()
+                                    let status = appSettings.notificationsEnabled ? "включены" : "выключены";                       triggerBanner(text: "Уведомления \(status)", icon: "bell.badge.fill", color: .red)
+                                        }
                                 }
-                            }
                             .padding(.horizontal, 20)
                         }
                         
@@ -199,20 +226,27 @@ struct SettingsView: View {
                     .padding(.vertical, 25)
                 }
             }
+            
             .navigationTitle("Настройки")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    Text("Настройки")
+     Text("Настройки")
                         .font(.custom("Kabel-Black", size: 28))
                         .foregroundColor(.red)
                 }
+               
             }
+            
         }
+        
+       
+        
         .blur(radius: isConfirmWindow ? 1 : 0)
         .opacity(isConfirmWindow ? 0.9 : 1.0)
         .disabled(isConfirmWindow)
         .animation(.easeInOut(duration: 0.3), value: isConfirmWindow)
+        
         .confirmationDialog(
             "Вы уверены?",
             isPresented: $isConfirmWindow,
@@ -230,7 +264,18 @@ struct SettingsView: View {
             }
         } message: {
             Text("Это действие удалит весь ваш прогресс без возможности восстановления.")
+            Text("При сбросе ваше приложение перезапустится.")
         }
+        
+        .overlay(alignment: .top) {
+            if showBanner {
+                NotificationBanner(title: bannerText, icon: bannerIcon, color: bannerColor)
+                    .padding(.top, 10)
+                    .transition(.move(edge: .top).combined(with: .opacity))
+            }
+        }
+        
+        
     }
         
 }
@@ -345,4 +390,36 @@ struct SettingInfoRow: View {
     SettingsView()
         .environmentObject(MetroDataManager.shared)
         .environmentObject(AppSettings())
+}
+
+
+struct NotificationBanner: View {
+    let title: String
+    let icon: String
+    let color: Color
+    
+    var body: some View {
+        HStack(spacing: 15) {
+            Image(systemName: icon)
+                .font(.system(size: 18, weight: .bold))
+                .foregroundColor(.white)
+                .frame(width: 36, height: 36)
+                .background(color)
+                .clipShape(Circle())
+            
+            Text(title)
+                .font(.custom("moscowsansregular", size: 15))
+                .foregroundColor(.primary)
+            
+            Spacer()
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
+        .background(
+            RoundedRectangle(cornerRadius: 20)
+                .fill(.ultraThinMaterial)
+                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
+        )
+        .padding(.horizontal, 20)
+    }
 }
