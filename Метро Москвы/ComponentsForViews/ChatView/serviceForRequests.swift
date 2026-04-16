@@ -8,8 +8,8 @@ import SwiftUI
 import Combine
 
 class MetroChatService: ObservableObject {
-    private let apiKey = "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"
-    private let endpoint = "https://integrate.api.nvidia.com/v1/chat/completions"
+    private let apiKey = "..."
+    private let endpoint = "..."
     
     @Published var messages: [AIChatMessage] = []
     @Published var isThinking = false
